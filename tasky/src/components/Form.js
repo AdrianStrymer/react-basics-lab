@@ -2,6 +2,7 @@ import React from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import MenuItem from '@mui/material/MenuItem';
 
 const AddTaskForm = (props) => {
 
@@ -43,6 +44,19 @@ const AddTaskForm = (props) => {
           rows={4}
           onChange={(event) => props.change(event)}
         />
+      </div>
+      <div>
+        <TextField
+          select
+          label="Priority"
+          name="priority"
+          value={props.formState.priority}
+          onChange={(event) => props.change(event)}
+        >
+          <MenuItem value="low">Low</MenuItem>
+          <MenuItem value="medium">Medium</MenuItem>
+          <MenuItem value="high">High</MenuItem>
+        </TextField>
       </div>
       <div>
         <Button 

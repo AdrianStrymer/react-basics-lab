@@ -14,17 +14,18 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 
 function App() {
-  const [ taskState, setTaskState ] = useState({
+  const [taskState, setTaskState] = useState({
     tasks: [
-      { id: 1, title:"Dishes", description: "Empty dishwasher", deadline: "Today", done: false },
-      { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow", done: false },
-      { id: 3, title: "Tidy up", deadline: "Today", done: false}
+      { id: 1, title: "Dishes", description: "Empty dishwasher", deadline: "Today", done: false, priority: "medium" },
+      { id: 2, title: "Laundry", description: "Fold clothes and put away", deadline: "Tomorrow", done: false, priority: "low" },
+      { id: 3, title: "Tidy up", deadline: "Today", done: false, priority: "high" }
     ]
   });
-  const [ formState, setFormState ] = useState({
+  const [formState, setFormState] = useState({
     title: "",
     description: "",
-    deadline: ""
+    deadline: "",
+    priority: "medium" // Default priority
   });
   const doneHandler = (taskIndex) => {
     const tasks = [...taskState.tasks];
@@ -38,20 +39,23 @@ function App() {
     setTaskState({tasks});
   } 
   const formChangeHandler = (event) => {
-    let form = {...formState};
-
-    switch(event.target.name) {
+    let form = { ...formState };
+  
+    switch (event.target.name) {
       case "title":
-          form.title = event.target.value;
-          break;
+        form.title = event.target.value;
+        break;
       case "description":
-          form.description = event.target.value;
-          break;
+        form.description = event.target.value;
+        break;
       case "deadline":
-          form.deadline = event.target.value;
-          break;
+        form.deadline = event.target.value;
+        break;
+      case "priority":
+        form.priority = event.target.value;
+        break;
       default:
-          form = formState;
+        form = formState;
     }
     setFormState(form);
   }
@@ -98,6 +102,7 @@ function App() {
                 description={task.description}
                 deadline={task.deadline}
                 done={task.done}
+                priority ={task.priority}
                 key={task.id}
                 markDone = {() => doneHandler(index)}
                 deleteTask = {() => deleteHandler(index)}
@@ -116,7 +121,8 @@ function App() {
         }}
       >
         <Grid container justifyContent="center">
-          <AddTaskForm submit={formSubmitHandler} change={formChangeHandler} />
+        <AddTaskForm submit={formSubmitHandler} change={formChangeHandler} formState={formState} />
+
         </Grid>
       </Container>
       {/* End Footer */}
