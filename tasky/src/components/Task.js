@@ -55,6 +55,7 @@ const Task = (props) => {
                   Due: {props.deadline}
               </Typography>
               </Box>
+              <Chip label={props.priority} variant="outlined" sx={{ backgroundColor: chipColor }} />
               <Typography
                   component="p"
                   variant="subtitle1"
@@ -63,7 +64,6 @@ const Task = (props) => {
               >
                   {props.description}
               </Typography>
-              <Chip label={props.priority} variant="outlined" sx={{ backgroundColor: chipColor }} />
           </CardContent>
           <CardActions sx={{justifyContent: 'space-between', padding: '20px'}}>
               <Button variant="contained" size="small" color="success" onClick={props.markDone}>

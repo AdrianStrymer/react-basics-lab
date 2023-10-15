@@ -25,7 +25,7 @@ function App() {
     title: "",
     description: "",
     deadline: "",
-    priority: "medium" // Default priority
+    priority: "" 
   });
   const doneHandler = (taskIndex) => {
     const tasks = [...taskState.tasks];
@@ -101,8 +101,8 @@ function App() {
                 title={task.title}
                 description={task.description}
                 deadline={task.deadline}
-                done={task.done}
                 priority ={task.priority}
+                done={task.done}
                 key={task.id}
                 markDone = {() => doneHandler(index)}
                 deleteTask = {() => deleteHandler(index)}
